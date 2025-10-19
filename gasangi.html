@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>이승준의 페이지</title>
-</head>
-<body>
-    <h1>202258010 이승준입니다.</h1>
-</body>
-</html>
-    
+<h1>Counter</h1>
+<p>버튼을 눌러 숫자를 조정하세요</p>
+<p id="num">0</p>
+<button id="btn-up">+</button>
+<button id="btn-down">-</button>
+<script>
+    var btnUp = document.getElementById("btn-up")
+    var btnDown = document.getElementById("btn-down")
+    var num = document.getElementById("num")
+    var count = 0
+    btnUp.addEventListener('click', () => {
+                count++        
+                num.innerText = count    
+ })
+ btnDown.addEventListener('click', () => {        
+    count--        
+    num.innerText = count    
+})
+</script>
