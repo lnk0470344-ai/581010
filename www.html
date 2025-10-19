@@ -1,0 +1,20 @@
+<h1>계산기</h1>
+<p>두 수의 합을 구합니다</p>
+
+<input id="a" type="number"> +
+<input id="b" type="number">
+<button id="btn">=</button>
+
+<p id="result"></p>
+
+<script>
+    var a = document.getElementById("a")
+    var b = document.getElementById("b")
+    var btn = document.getElementById("btn")
+    var result = document.getElementById("result")
+
+    btn.addEventListener('click', () => {
+        var sum = Number(a.value) + Number(b.value)
+        result.innerText = "결과: " + sum
+    })
+</script>

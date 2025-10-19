@@ -1,19 +1,17 @@
-<h1>Counter</h1>
-<p>버튼을 눌러 숫자를 조정하세요</p>
-<p id="num">0</p>
-<button id="btn-up">+</button>
-<button id="btn-down">-</button>
+<h1>계산기</h1>
+<p>두 수의 합을 구합니다</p>
+<input id="a" type="number"> + <input id="b" type="number">
+<button id="btn">=</button>
+<p id="result"></p>
 <script>
-    var btnUp = document.getElementById("btn-up")
-    var btnDown = document.getElementById("btn-down")
-    var num = document.getElementById("num")
-    var count = 0
-    btnUp.addEventListener('click', () => {
-                count++        
-                num.innerText = count    
- })
- btnDown.addEventListener('click', () => {        
-    count--        
-    num.innerText = count    
-})
+     var a = document.getElementById("a")    
+     var b = document.getElementById("b") 
+     var btn = document.getElementById("btn")
+     var result = document.getElementById("result")
+
+     btn.addEventListener('click', () =>  {       
+     var sum = Number(a.value) + Number(b.value)        
+     result.innerText = "결과: " + sum    
+     }
+     )
 </script>

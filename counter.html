@@ -1,0 +1,19 @@
+<h1>Counter</h1>
+<p>버튼을 눌러 숫자를 조정하세요</p>
+<p id="num">0</p>
+<button id="btn-up">+</button>
+<button id="btn-down">-</button>
+<script>
+    var btnUp = document.getElementById("btn-up")
+    var btnDown = document.getElementById("btn-down")
+    var num = document.getElementById("num")
+    var count = 0
+    btnUp.addEventListener('click', () => {
+                count++        
+                num.innerText = count    
+ })
+ btnDown.addEventListener('click', () => {        
+    count--        
+    num.innerText = count    
+})
+</script>
