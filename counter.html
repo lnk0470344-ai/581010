@@ -10,11 +10,6 @@
     var num = document.getElementById("num")
     var btnreset = document.getElementById("btn-reset")
     var count = 0
-btnreset.addEventListener('click', () => {
-    count = 0
-    num.innerText = count
-}
-)
 btnUp.addEventListener('click', () => {
                 count++        
                 num.innerText = count    
@@ -23,6 +18,11 @@ btnUp.addEventListener('click', () => {
  btnDown.addEventListener('click', () => {        
     count--        
     num.innerText = count    
+}
+)
+btnreset.addEventListener('click', () => {
+    count = 0
+    num.innerText = count
 }
 )
 </script>
