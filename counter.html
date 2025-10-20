@@ -3,12 +3,19 @@
 <p id="num">0</p>
 <button id="btn-up">+</button>
 <button id="btn-down">-</button>
+<button id="btn-reset">리셋</button></button>
 <script>
     var btnUp = document.getElementById("btn-up")
     var btnDown = document.getElementById("btn-down")
     var num = document.getElementById("num")
+    var btnreset = document.getElementById("btn-reset")
     var count = 0
-    btnUp.addEventListener('click', () => {
+btnreset.addEventListener('click', () => {
+    count = 0
+    num.innerText = count
+}
+)
+btnUp.addEventListener('click', () => {
                 count++        
                 num.innerText = count    
 }
