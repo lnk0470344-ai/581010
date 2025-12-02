@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>omok</title>
+<style>
+body{
+    text-align:center;
+    background:#eee;
+}
+canvas{
+    background:#d4a25a;
+    box-shadow:2px 2px 5px #555;
+}
+button{
+    margin:10px;
+    padding:6px 12px;
+}
+</style>
+</head>
+<body>
+<button id="u">undo</button><br>
+<canvas id="c" width="600" height="600"></canvas>
+<script>
+let cv=document.getElementById('c');
+let ct=cv.getContext('2d');
+let s=19;
+let g=cv.width/(s+1);
+let t=1;
+let bd=[];
+for(let i=0;i<s;i++) bd.push(Array(s).fill(0));
+let h=[];
+function draw(){
+    ct.clearRect(0,0,600,600);
+    for(let i=1;i<=s;i++){
+        ct.beginPath();
+        ct.moveTo(g,i*g);
+        ct.lineTo(s*g,i*g);
+        ct.stroke();
+        ct.beginPath();
+        ct.moveTo(i*g,g);
+        ct.lineTo(i*g,s*g);
+        ct.stroke();
+    }
+}
+draw();
+function stone(x,y,c){
+    ct.beginPath();
+    ct.arc((x+1)*g,(y+1)*g,g*0.38,0,Math.PI*2);
+    ct.fillStyle=c;
+    ct.fill();
+    ct.stroke();
+}
+function redraw(){
+    draw();
+    for(let y=0;y<s;y++){
+        for(let x=0;x<s;x++){
+            if(bd[y][x]==1) stone(x,y,'black');
+            else if(bd[y][x]==2) stone(x,y,'white');
+        }
+    }
+}
+function win(px,py){
+    let d=[[[1,0],[-1,0]],[[0,1],[0,-1]],[[1,1],[-1,-1]],[[1,-1],[-1,1]]];
+    let c=bd[py][px];
+    for(let k of d){
+        let n=1;
+        for(let a of k){
+            let x=px,y=py;
+            while(1){
+                x+=a[0];y+=a[1];
+                if(x<0||y<0||x>=s||y>=s) break;
+                if(bd[y][x]!=c) break;
+                n++;
+            }
+        }
+        if(n>=5) return true;
+    }
+    return false;
+}
+cv.onclick=e=>{
+    let r=cv.getBoundingClientRect();
+    let mx=e.clientX-r.left;
+    let my=e.clientY-r.top;
+    let x=Math.round(mx/g)-1;
+    let y=Math.round(my/g)-1;
+    if(x<0||y<0||x>=s||y>=s) return;
+    if(bd[y][x]!=0) return;
+    bd[y][x]=t;
+    h.push({x:x,y:y,c:t});
+    stone(x,y,t==1?'black':'white');
+    if(win(x,y)){
+        setTimeout(()=>alert((t==1?'black':'white')+' win'),10);
+        cv.style.pointerEvents='none';
+        return;
+    }
+    t=3-t;
+};
+
+document.getElementById('u').onclick=()=>{
+    if(h.length==0) return;
+    let l=h.pop();
+    bd[l.y][l.x]=0;
+    t=l.c;
+    cv.style.pointerEvents='auto';
+    redraw();
+};
+</script>
+</body>
+</html>
